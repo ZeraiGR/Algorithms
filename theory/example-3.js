@@ -1,5 +1,5 @@
 // Максимум последовательности (особые случаи)
-import { assert } from "./tester.js";
+import { assert } from "../tester.js";
 
 // Danger - а что если все члены последовательности будут отрицательными?
 function seqMax1 (seq) {
