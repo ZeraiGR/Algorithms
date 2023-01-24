@@ -16,4 +16,6 @@ function seqSum2 (seq) {
 	return seqsum;
 }
 
+// Tests
+console.log(seqSum1(123)); // 6
 console.log(seqSum2(123)); // 6

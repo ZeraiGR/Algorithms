@@ -1,3 +1,5 @@
+// Оценка сложности. Пример задачки.
+
 // Дана строка (в кодировке UTF-8) - (1 112 064 позиций)
 // Найти самый часто встречающийся в ней символ.
 // Если несколько символов встречаются одинаково
@@ -82,6 +84,7 @@ function findMostFrequentSymbol4 (str) {
 	return ans;
 }
 
+// Tests
 console.log('1: ', findMostFrequentSymbol1('ababa')); // a
 console.log('1: ', findMostFrequentSymbol1('')); // null
 console.log('1: ', findMostFrequentSymbol1('fhirhgkrtgrkeghjklrshgtre')); // r
