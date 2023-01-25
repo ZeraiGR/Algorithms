@@ -1,5 +1,5 @@
 // Покрытие тестами
-import { assert } from "../tester.js";
+import { assert } from "../../../tester.js";
 
 // Задача: даны три целых числа a,b,c.
 // Найдите все корни уравнения ax^2 + bx + с = 0
