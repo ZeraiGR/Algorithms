@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/check-if-it-is-a-straight-line/description/
+// Tags: Array, Math, Geometry
+
 // You are given an array coordinates, coordinates[i] = [x, y], where [x, y] 
 // represents the coordinate of a point. Check if these points make a straight 
 // line in the XY plane.
@@ -10,8 +13,6 @@ var checkStraightLine = function(coordinates) {
     }
 
 		angles.push(calcAngle(coordinates));
-
-		console.log(angles);
 
     for (let i = 0; i < angles.length - 1; i++) {
         if (angles[i] !== angles[i+1]) return false;
