@@ -26,3 +26,5 @@ assert(4, countElements([1,1,2,2]), 0);
 assert(5, countElements([1]), 0);
 assert(6, countElements([1, 2]), 0);
 assert(7, countElements([1, 2, 3]), 1);
+
+// todo https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/solutions/1711307/c-o-n-time-o-1-space-100-efficient-3-approaches/
