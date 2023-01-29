@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/cousins-in-binary-tree/
-import { assert } from "../tester.js";
+import { assert } from "../../tester.js";
 
 // Tree, DFS, BFS, Binary tree
 

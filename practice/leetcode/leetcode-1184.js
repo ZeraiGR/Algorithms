@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/distance-between-bus-stops/
-import { assert } from "../tester.js";
+import { assert } from "../../tester.js";
 
 // Tags: Array
 

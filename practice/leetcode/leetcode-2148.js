@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/
-import { assert } from "../tester.js";
+import { assert } from "../../tester.js";
 
 // Tags: Array, Sorting
 
