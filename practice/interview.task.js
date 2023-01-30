@@ -16,11 +16,12 @@ const clients = [
 
 function parsePhones (clients) {
 	const res = {};
-	for (const client of clients) {
-		if (!res[client.phone]) {
-			res[client.phone] = [client.name]
+
+	for (const {name, phone} of clients) {
+		if (!Object.prototype.hasOwnProperty.call(res, phone)) {
+			res[phone] = [name]
 		} else {
-			res[client.phone].push(client.name);
+			res[phone].push(name);
 		}
 	}
 
