@@ -16,7 +16,6 @@ const [_, ...counter] = fileContent.replace(/\s+/g, ' ').trim().split(' ').map(n
 
 const maxFolderSize = Math.max(...counter);
 const totalSize = counter.reduce((a,b) => a + b, 0);
-console.log(maxFolderSize, totalSize);
 let res = totalSize - maxFolderSize;
 
 fs.writeFileSync("output.txt", res.toString());
