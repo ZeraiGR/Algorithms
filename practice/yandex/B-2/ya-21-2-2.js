@@ -35,3 +35,21 @@ for (let i = 0; i < seq.length; i++) {
 const res = Math.max(...resArr);
 
 fs.writeFileSync("output.txt", res.toString())
+
+// Another way to solve
+
+// let shoppos = -Infinity;
+// let left = new Array(seq.length).fill(0);
+// for (let i = 0; i < seq.length; i++) {
+// 	if (seq[i] === 2) shoppos = i;
+// 	if (seq[i] === 1) left[i] = i - shoppos;
+// }
+// let ans = 0;
+// shoppos = Infinity;
+// for(let i = seq.length - 1; i <= 0; --i) {
+// 	if (seq[i] === 2) shoppos = i;
+// 	if (seq[i] === 1) {
+// 		let mindist = Math.min(shoppos - i, left[i]);
+// 		ans = Math.max(ans, mindist);
+// 	}
+// }
