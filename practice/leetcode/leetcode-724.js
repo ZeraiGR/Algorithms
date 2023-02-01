@@ -1,6 +1,6 @@
 // Find Pivot Index
 import { assert } from "../../tester.js";
-// https://leetcode.com/problems/find-pivot-index/?envType=study-plan&id=level-1
+// https://leetcode.com/problems/find-pivot-index/
 
 // Tags: Array, Prefix Sum
 
