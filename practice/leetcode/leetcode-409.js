@@ -24,3 +24,20 @@ const longestPalindrome = function(s) {
 console.log(longestPalindrome('a')); // 1
 console.log(longestPalindrome('bb')); // 2
 console.log(longestPalindrome('ababababa')); // 9
+
+// Official solution
+
+const longestPalindrome2 = function(s) {
+	const map = {};
+	for (const l of s) map[l] = (map[l] ?? 0) + 1;
+  let ans = 0;
+	for (const v of Object.values(map)) {
+		ans += Math.trunc(v / 2) * 2;
+		if (ans % 2 === 0 && v % 2 === 1) ans += 1;
+	}
+	return ans;
+};
+
+console.log(longestPalindrome2('a')); // 1
+console.log(longestPalindrome2('bb')); // 2
+console.log(longestPalindrome2('ababababa')); // 9
