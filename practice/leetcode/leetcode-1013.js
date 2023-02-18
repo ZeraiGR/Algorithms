@@ -45,3 +45,30 @@ console.log(canThreePartsEqualSum([18,12,-18,18,-19,-1,10,10]));  // true
 console.log(canThreePartsEqualSum([2,8,15,-5,0,9,-3,4])); // true
 console.log(canThreePartsEqualSum([1,-1,1,-1])); // false
 console.log(canThreePartsEqualSum([0,0,0,0]));  // true
+
+// A little bit more pretty solution
+const canThreePartsEqualSum2 = (arr) => {
+  let total = arr.reduce((acc, item) => acc += item, 0);
+  if (total % 3 !== 0) return false;
+  const require = total / 3;
+  let sum = 0, cnt = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    if (sum === require) {
+      sum = 0;
+      cnt += 1;
+    }
+  }
+
+  return cnt >= 3;
+}
+
+console.log('-----');
+console.log(canThreePartsEqualSum2([0,2,1,-6,6,-7,9,1,2,0,1])); // true
+console.log(canThreePartsEqualSum2([0,2,1,-6,6,7,9,-1,2,0,1])); // false
+console.log(canThreePartsEqualSum2([3,3,6,5,-2,2,5,1,-9,4])); // true
+console.log(canThreePartsEqualSum2([18,12,-18,18,-19,-1,10,10]));  // true
+console.log(canThreePartsEqualSum2([2,8,15,-5,0,9,-3,4])); // true
+console.log(canThreePartsEqualSum2([1,-1,1,-1])); // false
+console.log(canThreePartsEqualSum2([0,0,0,0]));  // true
