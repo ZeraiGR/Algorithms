@@ -46,3 +46,33 @@ const removeElementsWithDummyNode = function (head, val) {
 
   return dummy.next;
 }
+
+const removeElementsWithPrevPointer = function (head, val) {
+  let dummy, cur, prev;
+  dummy = new ListNode(null, head);
+  prev = dummy;
+  cur = head;
+
+  while (cur !== null) {
+    if (cur.val === val) {
+      prev.next = cur.next;
+    } else {
+      prev = cur;
+    }
+    cur = cur.next;
+  }
+
+  return dummy.next;
+}
+
+const removeElementsWithRecursion = function (head, val) {
+  if (head === null) return null;
+
+  const rightSide = removeElements(head.next, val);
+  
+  if (head.val === val) return rightSide;
+  
+  head.next = rightSide;
+
+  return head;
+}
