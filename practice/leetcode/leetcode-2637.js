@@ -17,3 +17,13 @@ const timeLimit = function (fn, t) {
     });
   }
 }
+
+const timeLimitWithRace = function (fn, t) {
+  return function (...args) {
+    const originalPromise = fn(...args); 
+    const timeLimitPromise = new Promise((_, reject) => setTimeout(() => {
+      reject("Time Limit Exceeded");
+    }, t));
+    return Promise.race([originalPromise, timeLimitPromise]);
+  }
+}
