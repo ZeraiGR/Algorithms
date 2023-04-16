@@ -35,9 +35,58 @@
 
 */
 
-function renrerWaterfall (rootNode, columnCount, elementGap) {
-  rootNode.style["background-color"] = "#cccccc";
 
+/** @typedef {import('./solution').RenderWaterfall} RenderWaterfall */
+
+/** @type {RenderWaterfall} */
+function renrerWaterfall (rootNode, columnCount = 3, gap = 20) {
+  rootNode.style.display = 'flex';
+  rootNode.style.justifyContent = 'space-between';
+
+  const styleTag = document.createElement('style');
+  const css = `
+    .column :not(:last-child) {
+      margin-bottom: ${gap}px;
+    }
+  `;
+
+  styleTag.appendChild(document.createTextNode(css));
+  document.body.appendChild(styleTag);
+
+  const allGapsWidth = gap * (columnCount - 1);
+  const columnWidth = (rootNode.offsetWidth - allGapsWidth) / columnCount;
+
+  /** @type {(arr: number[]) => number} */
+  const findBestColumnIndex = (arr) => {
+    let minIndex = 0;
+    arr.forEach((item, index) => {
+      if (item < arr[minIndex]) minIndex = index;
+    });
+    return minIndex;
+  };
+
+  const columnsHeight = new Array(columnCount).fill(0);
+  const letters = Array.from(rootNode.children);
+
+  /** @type {HTMLDivElement[]} */
+  const columnElements = new Array(columnCount).fill().map(() => {
+    const columnElement = document.createElement('div');
+    columnElement.className = 'column';
+    columnElement.style.width = `${columnWidth}px`;
+
+    rootNode.appendChild(columnElement);
+
+    return columnElement;
+  });
+
+  while (letters.length) {
+    const idx = findBestColumnIndex(columnsHeight);
+
+    console.log(columnsHeight);
+
+    columnElements[idx].appendChild(letters.shift());
+    columnsHeight[idx] = columnElements[idx].offsetHeight;
+  }
 }
 
 /*
