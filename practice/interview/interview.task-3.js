@@ -40,7 +40,6 @@ function logStack (obj) {
     const iter = stack.pop();
 
     for (let val of iter) {
-
       if (typeof val === 'object' && val !== null) {
         stack.push(iter);
         stack.push(intoIter(val));
