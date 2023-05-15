@@ -4,20 +4,30 @@
 // Tags: Hash Table, String, Sliding Window, Counting
 
 const countGoodSubstrings = function(s) {
-  if (s.length < 3) return 0;
+  const state = {};
+  let left = res = 0;
 
-  let left = 0,
-      right = 2,
-      res = 0;
-  
-  const data = {};
+  for (let right = 0; right < s.length; right++) {
+    let cur = s[right];
 
-  for (let i = 0; i < 3; i++) {
-    data = (data[s[i]] ?? 0) + 1;
+    state[cur] = (state[cur] ?? 0) + 1;
+
+    if (right - left === 3) {
+      let leftChar = s[left];
+      state[leftChar] -= 1;
+
+      if (state[leftChar] == 0) delete state[leftChar]; 
+
+      left += 1;
+    }
+
+    if (Object.keys(state).length === 3) {
+      res += 1;
+    }
   }
-  
-  if (Object.keys(data).length === 3) res++;
 
-  
-
+  return res;
 };
+
+console.log(countGoodSubstrings('xyzzaz'));
+console.log(countGoodSubstrings("aababcabc"));
