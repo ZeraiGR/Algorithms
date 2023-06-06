@@ -7,21 +7,20 @@ const answerQueries = function(nums, queries) {
   let res = [];
   let sortedNums = [...nums].sort((a, b) => a - b);
   
-
   for (let i = 0; i < queries.length; i++) {
     let curQuery = queries[i];
     let cur = 0;
-    let 
+    let cnt = 0;
     
     for (let j = 0; j < sortedNums.length; j++) {
       cur += sortedNums[j];
 
       if (cur > curQuery) break;
-
-
+  
+      cnt++;
     }
 
-    res.push(cur);
+    res.push(cnt);
   }
   return res;
 };
