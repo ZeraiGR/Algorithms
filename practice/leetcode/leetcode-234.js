@@ -46,3 +46,47 @@ const isPalindrome2 = function(head) {
     }
     return true;
 };
+
+const isPalindrome3 = function (head) {
+  if (!head) return false;
+
+  const getMidNode = (head) => {
+    let fast = slow = head;
+
+    while (fast && fast.next) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+
+    return slow;
+  };
+
+  const reverseList = (head) => {
+    let prev = null,
+        cur = head;
+
+    while (cur) {
+      let next = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = next;
+    }
+
+    return prev;
+  };
+
+  const midNode = getMidNode(head);
+  let reverse = reverseList(midNode);
+  let current = head;
+
+  while (current.next) {
+    if (reverse.val !== current.val) {
+      return false;
+    }
+
+    reverse = reverse.next;
+    current = current.next;
+  }
+
+  return true;
+}
