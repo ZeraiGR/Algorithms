@@ -20,5 +20,15 @@ const countBits = function(n) {
   return res;
 };
 
+const countBits2 = function (n) {
+  const memo = new Array(n+1).fill(0);
+
+  for (let i = 1; i < n + 1; i++) {
+    memo[i] = memo[i >> 1] + i % 2;
+  }
+
+  return memo;
+}
+
 console.log(countBits(2));
-console.log(countBits(5));
+console.log(countBits2(5));
