@@ -36,3 +36,19 @@ console.log(isLongPressedName("alex", "aaleexa"));
 console.log(isLongPressedName("pyplrz", "ppyypllr"));
 console.log(isLongPressedName("kikcxmvzi", "kiikcxxmmvvzz"));
 console.log(isLongPressedName("alex", "alexxr"));
+
+const isLongPressedName2 = function(name, typed) {
+  let j = 0;
+
+  for (let i = 0; i < typed.length; i++) {
+    if (typed[i] === name[j]) {
+      j++
+    } else if (typed[i] === name[j-1]) {
+      continue;
+    } else {
+      return false;
+    }
+  }
+
+  return name.length === j;
+}
