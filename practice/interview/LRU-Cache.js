@@ -17,6 +17,7 @@ The functions get and put must each run in O(1) average time complexity.
  * @param {number} capacity
  */
 var LRUCache = function(capacity) {
+  this.cache = new Map();
   this.capacity = capacity;
 };
 
@@ -25,7 +26,14 @@ var LRUCache = function(capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function(key) {
-  
+  if (!this.cache.has(key)) return -1;
+
+  // update position in cache
+  let val = this.cache.get(key);
+  this.cache.delete(key);
+  this.cache.set(key, val);
+
+  return val;
 };
 
 /** 
@@ -34,7 +42,14 @@ LRUCache.prototype.get = function(key) {
  * @return {void}
  */
 LRUCache.prototype.put = function(key, value) {
-    
+  if (this.cache.has(key)) {
+      this.cache.delete(key);
+  }
+  this.cache.set(key, value);
+
+  if (this.cache.size > this.capacity) {
+      this.cache.delete(this.cache.keys().next().value);
+  }
 };
 
 /** 
