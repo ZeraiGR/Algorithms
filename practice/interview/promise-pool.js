@@ -58,3 +58,67 @@ const promisePool = async function (functions, n) {
 
   });
 }
+
+const promisePool2 = async function (functions, n) {
+  return new Promise ((resolve, reject) => {
+    let i = 0;
+    let inProgress = 0;
+    let res = [];
+
+    function callback (){
+      if (i === functions.length && inProgress === 0) {
+        resolve(res);
+      }
+
+      while (i < functions.length && inProgress < n) {
+        functions[i++]()
+          .then((ans) => {
+            res.push(ans);
+            inProgress--;
+            callback();
+          })
+          .catch(reject);
+        inProgress++;
+      }
+
+    }
+
+    callback();
+  });
+}
+
+const promisePool3 = async function (urls, n) {
+  const cache = new Map();
+
+  return new Promise ((resolve, reject) => {
+    let i = 0;
+    let inProgress = 0;
+    let res = [];
+
+    function callback (){
+      if (i === urls.length && inProgress === 0) {
+        resolve(res);
+      }
+
+      while (i < functions.length && inProgress < n) {
+        if (cache.has(urls[i])) {
+          i++;
+          res.push(cache.get(urls[i]));
+          if (i === urls.length && inProgress === 0) resolve(res);
+        } else {
+          fetch(urls[i])()
+            .then((ans) => {
+              cache.set(urls[i], ans);
+              res.push(ans);
+              inProgress--;
+              callback();
+            })
+            .catch(reject);
+          inProgress++;
+        }
+      }
+    }
+
+    callback();
+  });
+}
