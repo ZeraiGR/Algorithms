@@ -102,13 +102,13 @@ const promisePool3 = async function (urls, n) {
 
       while (i < functions.length && inProgress < n) {
         if (cache.has(urls[i])) {
-          i++;
-          res.push(cache.get(urls[i]));
+          res.push(cache.get(urls[i++]));
           if (i === urls.length && inProgress === 0) resolve(res);
         } else {
-          fetch(urls[i])()
-            .then((ans) => {
-              cache.set(urls[i], ans);
+          let url = urls[i++];
+          fetch(url)()
+          .then((ans) => {
+              cache.set(url, ans);
               res.push(ans);
               inProgress--;
               callback();
